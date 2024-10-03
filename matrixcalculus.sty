@@ -1,0 +1,45 @@
+% https://www.overleaf.com/learn/latex/Writing_your_own_package
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{matrixcalculus}[2024/10/03]
+
+% https://tex.stackexchange.com/a/284054
+\newcommand{\argmin}{\mathop{\mathrm{arg\,min}}}
+\newcommand{\trace}{\mathrm{tr}}
+\newcommand{\expected}{\mathop\mathsf E}
+\newcommand{\partialfrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\Diag}{\mathrm{Diag}} % diagonalize vector to matrix
+\newcommand{\diag}{\mathbf{diag}} % diagonalize matrix to vector
+\newcommand{\vect}{\mathbf{vec}} % vectorize
+\newcommand{\krone}{\otimes} % Kronecker product
+\newcommand{\hadam}{\odot} % Hadamard product
+% https://tex.stackexchange.com/a/163041
+\newcommand{\dif}{\mathop{}\!\mathsf d} % differential
+\newcommand{\der}{\mathop{}\!\mathsf D} % derivative
+\newcommand{\pluseq}{\mathrel{{+}{=}}}
+\renewcommand\vec[1]{\mathbf{#1}}
+\newcommand\matr{\mathrm{Mat}}
+
+\newif\if@graphics
+\@graphicstrue
+\newif\if@hyperref
+\@hyperreftrue
+
+\DeclareOption{nographics}{\@graphicsfalse}
+\DeclareOption{nohyperref}{\@hyperreffalse}
+\DeclareOption*{\PackageWarning{matrixcalculus}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
+
+\if@graphics
+	% https://tex.stackexchange.com/a/638348
+	% http://latexref.xyz/_005cDeclareGraphicsRule.html
+	\IfFileExists{graphics.sty}%
+		{\RequirePackage{graphics}\DeclareGraphicsRule{*}{mps}{*}{}}%
+		{\PackageWarning{matrixcalculus}{The graphics packcage was not found}}
+		% NOTE: maybe I can mock \includegraphics and make it output a placeholder square.}
+\else\relax\fi
+\if@hyperref
+	\IfFileExists{hyperref.sty}%
+		{\RequirePackage[pdfborder={0 0 0},pdfusetitle]{hyperref}}%
+		{\PackageWarning{matrixcalculus}{The hyperref packcage was not found}
+		\newcommand{\url}{\verb}}
+\else\relax\fi
