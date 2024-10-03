@@ -1,2 +1,4 @@
 rem https://tex.stackexchange.com/a/1141
-COPY /Y matrixcalculus.sty "%LOCALAPPDATA%\Programs\texlive\texmf-local\tex\latex\local"
+FOR /F "tokens=* USEBACKQ" %%F IN (`kpsewhich -var-value TEXMFLOCAL`) DO (SET dest=%%F)
+COPY /Y matrixcalculus.sty "%dest%"
+texhash
