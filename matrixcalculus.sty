@@ -7,6 +7,9 @@
 \newcommand{\trace}{\mathrm{tr}}
 \newcommand{\expected}{\mathop\mathsf E}
 \newcommand{\partialfrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\makepartialfractextstyle}{%
+	\renewcommand{\partialfrac}[2]{\textstyle\frac{\partial##1}{\partial##2}}%
+}
 \newcommand{\Diag}{\mathrm{Diag}} % diagonalize vector to matrix
 \newcommand{\diag}{\mathbf{diag}} % diagonalize matrix to vector
 \newcommand{\vect}{\mathbf{vec}} % vectorize
