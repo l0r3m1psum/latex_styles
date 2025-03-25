@@ -30,7 +30,7 @@
 
 \DeclareOption{nographics}{\@graphicsfalse}
 \DeclareOption{nohyperref}{\@hyperreffalse}
-\DeclareOption*{\PackageWarning{matrixcalculus}{Unknown ‘\CurrentOption’}}
+\DeclareOption*{\PackageWarning{matrixcalculus}{Unknown `\CurrentOption'}}
 \ProcessOptions\relax
 
 \if@graphics
@@ -43,9 +43,9 @@
 \fi
 \if@hyperref
 	\IfFileExists{hyperref.sty}%
-		% hyperref does not like being loaded multiple times with different
-		% options
-		{\@ifpackageloaded{hyperref}{}{\RequirePackage[pdfborder={0 0 0},pdfusetitle]{hyperref}}}%
+		{\@ifpackageloaded{hyperref}%
+			{\PackageWarning{matrixcalculus}{hyperref is already loaded, it does not like loaded multiple times with different options}}%
+			{\RequirePackage[pdfborder={0 0 0},pdfusetitle]{hyperref}}}%
 		{\PackageWarning{matrixcalculus}{The hyperref packcage was not found}%
 		\newcommand{\url}{\verb}}
 \fi
