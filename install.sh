@@ -2,4 +2,4 @@
 dest=`kpsewhich -var-value=TEXMFHOME`
 dest="${dest}/tex/latex/local"
 mkdir -p "$dest"
-cp -f matrixcalculus.sty "$dest"
+cp -f *.sty "$dest"
